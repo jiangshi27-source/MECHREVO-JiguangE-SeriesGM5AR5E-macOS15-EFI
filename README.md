@@ -89,9 +89,8 @@ Shared so that owners of the same or similar hardware do not have to repeat the 
 
 ## 中文说明
 
-这是一份**机械革命 极光E GM5AR5E** 笔记本的 OpenCore EFI，使用
+**机械革命 极光E GM5AR5E（2023款）** 笔记本的 OpenCore EFI，使用
 [NullMoth NVIDIA 驱动](https://github.com/nullmoth/nvidia-macos-driver)（RTX 4050 Laptop）启动 **macOS 15.6 Sequoia**。
-分享出来，希望同型号/相近硬件的用户少走弯路。
 
 > **使用前必须生成你自己的 SMBIOS。** `EFI/OC/config.plist` 里的 `SystemSerialNumber`、`MLB`、`SystemUUID`
 > 都是占位符。请用 OpenCore Configurator / OCAuxiliaryTools / GenSMBIOS（机型 `MacBookPro16,2`）生成你自己的值替换。
@@ -154,7 +153,7 @@ Shared so that owners of the same or similar hardware do not have to repeat the 
   系统设置里没有 Wi-Fi 菜单。安装器阶段无法用 Wi-Fi 联网，请用有线网络。
 
 ### 已知限制
-
+//折腾两三次一直panic我也不想折腾了，平常不常用触摸板，如果有高人能修一下就更好了
 - **触摸板（MCHP1930）不可用。** 内置触摸板是 I2C HID 设备，厂商 `_HID` 为 `MCHP1930`，且 `_STA`
   在 macOS 下返回 0。尝试用改过的 DSDT（`_CID = PNP0C50`、`_STA = 0x0F`）+ VoodooI2C 2.8/2.9 会导致内核
   panic（`va_map_delete` in `com.alexandred.VoodooI2C`），因此触摸板保持禁用。请用 USB 鼠标。
